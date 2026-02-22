@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
       console.log('Filtering by keywords:', keywords)
       filteredArticles = allArticles.filter(article => {
         const searchText = `${article.title} ${article.contentSnippet} ${article.content}`.toLowerCase()
-        return keywords.some(keyword => searchText.includes(keyword.toLowerCase()))
+        return keywords.some((keyword: string) => searchText.includes(keyword.toLowerCase()))
       })
       console.log(`Filtered from ${allArticles.length} to ${filteredArticles.length} articles`)
     }
