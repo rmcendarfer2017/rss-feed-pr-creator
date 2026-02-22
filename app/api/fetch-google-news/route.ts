@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
         pubDate: item.pubDate || item.isoDate || new Date().toISOString(),
         content: item.content || item.contentSnippet || '',
         contentSnippet: item.contentSnippet || item.content?.substring(0, 200) || '',
-        creator: item.creator || item.author || '',
+        creator: (item as any).creator || (item as any).author || '',
         feedSource: item.source?.['_'] || 'Google News',
       }
     })
