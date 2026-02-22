@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
           pubDate: item.pubDate || new Date().toISOString(),
           content: item.content || item.contentSnippet || '',
           contentSnippet: item.contentSnippet || '',
-          creator: item.creator || item.author || '',
+          creator: (item as any).creator || (item as any).author || '',
           feedSource: feedHostname,
         }))
 
