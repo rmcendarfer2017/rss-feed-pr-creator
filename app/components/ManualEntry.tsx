@@ -5,7 +5,7 @@ import { useState } from 'react'
 interface ManualEntryProps {
   onRewrite: (data: { title: string; content: string }) => void
   rewriteStatus: {
-    status: 'idle' | 'rewriting' | 'success' | 'error'
+    status: 'idle' | 'extracting' | 'rewriting' | 'success' | 'error'
     message?: string
   }
   rewrittenData: {
