@@ -16,25 +16,32 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const brandVoice = process.env.BRAND_VOICE || 'Professional and engaging'
+    const brandVoiceOverride = process.env.BRAND_VOICE || ''
 
     const prompt = `You are an expert content writer tasked with rewriting articles while maintaining their core information and message.
 
-BRAND VOICE:
-${brandVoice}
-
+BRAND VOICE — THIS IS HOW YOU MUST WRITE:
+Casual with the occasional bit of humor or pop culture reference, yet professional. Think of yourself as a smart, well-read friend explaining something interesting over coffee. Specifically:
+- Keep the tone conversational and approachable — no corporate stiffness or buzzword soup
+- Drop in the occasional witty aside, pop culture nod, or clever analogy to keep things fun
+- Stay professional — humor should land naturally, never forced or cringy
+- Use active voice and short, punchy sentences mixed with longer ones for rhythm
+- Avoid jargon unless you explain it in plain English right after
+- Be confident but not preachy — inform and entertain, don't lecture
+- Write like a real person, not a press release
+${brandVoiceOverride ? `\nADDITIONAL BRAND GUIDELINES:\n${brandVoiceOverride}\n` : ''}
 ORIGINAL ARTICLE:
 Title: ${title}
 Content: ${content}
 
 INSTRUCTIONS:
 1. Rewrite BOTH the title and the article content completely in the brand voice described above
-2. The new title should be engaging, SEO-friendly, and match the brand voice
+2. The new title should be engaging, SEO-friendly, and match the brand voice — make it catchy
 3. Maintain all key facts, statistics, and important information in the content
 4. Make the content engaging and well-structured with proper paragraphs
 5. Keep the same general length as the original
 6. Use HTML formatting (p tags, headings, lists) for the article content
-7. Make sure the rewrite is original and not just minor word changes
+7. Make sure the rewrite is original and not just minor word changes — this should feel like a completely different writer covered the same story
 8. Output your response in the following format EXACTLY:
 
 TITLE: [Your rewritten title here]
